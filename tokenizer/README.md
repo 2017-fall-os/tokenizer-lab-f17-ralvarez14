@@ -1,4 +1,4 @@
-I help Ana lastName to organaize ideas for the tokenizer.
+I help Ana Garcia to organaize ideas for the tokenizer.
 
 right now the tokenizer only use the delimiter ' ' this is because if I where to use a char variable to tell the delimiter, then the iteration would not recognize the delimiter.
 
