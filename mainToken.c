@@ -13,10 +13,10 @@ int main(int argc, char **argv){
         out = cmpExt(str);
         if(out == 0){
             char ** tokenVec = myTock(str);
-            //write(1,"succes?\n",8);
+          //  write(1,"succes?\n",8);
             printVec(tokenVec);
             freeMem(tokenVec,str);
-            write(1,"Memory has been freed\n",21);
+            //write(1,"Memory has been freed\n",21);
             //free(tokenVec);
             //write(1,"Memory has been freed\n",21);
         }
