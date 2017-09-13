@@ -22,32 +22,42 @@ int getTokenSize(char str []){ // returns size of token
 }
 
 char * trim(char * str){   // Ignores space before first letter
-  //  int i = 0;              // Retruns a pointer to it.
-    char * ptr = (char *) malloc (sizeof(char));
-    ptr = str;
-    if(*str == ' '){
+                           // Retruns a pointer to it.
         while(*str == ' '){
-            *str++;
+            str++;
         }
-        ptr = str;
-    }
-    return ptr;
+    return str;
 }
 
 int getNumWords(char str []){ // Return the number of tokens
-    char *tempPtr;            // the string has  
+    int flag = 1;            // the string has  
     int size = 0;
-    int i = 0;              // Checks the delimiter
-    if(str[i] == ' '){  
-        while(str[i] == ' '){ 
-            i++;
-        }
-    }
-    for(int j = i; str[j] != '\0'; j++){
-        if(str[j] == ' ')
+    int i = 0;                // Checks the delimiter
+    
+    while(str[i] != '\0'){
+        if(str[i] != ' ' && flag == 1){
             size++;
+        }
+        if(str[i] == ' ' && str[i-1] == ' ')
+            flag = 0;
+        if(str[i] == ' ' && str[i+1] == ' ')
+            flag = 0;
+        if(str[i] == ' ')
+            flag = 1;
+        else{
+            flag = 0;
+        }
+        i++;
     }
-    return size + 1;
+        return size;
+
+//    for (; *tempPtr; tempPtr++){
+//        char * str2 = trim(str);
+//        int tknSize = getTokenSize(str2);
+//        str = str2 + tknSize;
+//        size ++;
+//    }
+//    return size;
 }
 
 int cmpExt(char str []){  // return 1 if token is "exit"
@@ -61,14 +71,11 @@ int cmpExt(char str []){  // return 1 if token is "exit"
 
 char * cpyToken(char * str2, int tkSize){  //returns the token
     int i = 0;
-    char * token = (char *) malloc (sizeof(char));
+    char * token = (char *) malloc (sizeof(char)+tkSize);
     for ( i = 0; i < tkSize; i++){
-        if(str2[i] != ' '){
             token[i] = str2[i];
-            //write(1,word,14);
-        }
     }
-    token[i+1] = '\0'; 
+    token[i] = '\0'; 
     return token;
 }
 
@@ -81,43 +88,26 @@ void printVec(char ** tokenVec){
 }
 
 void freeMem(char ** tokenVec,char str []){ //frees tkvec more on Readme
-    
- //   int numWords = getNumWords(str);
-//    write(1,"numWords\n",9);
-    //printf("numWords %d",numWords);
-   // write(1,numWords,sizeof(numWords));
-//    for(int i = 0; i<=numWords; i++){
-//        write(1,"a\n",2);
-//        free(tokenVec[i+1]);
-//    }
-//    write(1,"after for loop\n",14);
- //   free(tokenVec);
-//    write(1,"end of freeMem\n",14);
+    char ** temp = tokenVec;
     for(;*tokenVec; tokenVec++){
-         *tokenVec = NULL;
         write(1,"1\n",2);
-        //free(*tokenVec);
+        free(*tokenVec);
     }
-    //free(tokenVec);
+    free(temp);
 }
 
 char ** myTock(char str []){
-    //char * str2 = trim(str);
     int i;
     int numWords = getNumWords(str);
     
- //   write(1,"test print: ",12);
     char ** tokenVec = (char **)calloc(numWords+1, sizeof(char *));
+    
     for(i = 0; i < numWords; i++){
         char * str2 = trim(str);
         int tkSize = getTokenSize(str2);
-        
-        tokenVec[i] = (char *)malloc(tkSize+1);
         tokenVec[i] = cpyToken(str2,tkSize);
         str = str2+tkSize;
-        //tokenVec++;
     }
     tokenVec[i] = '\0';  
-
     return tokenVec;
 }
