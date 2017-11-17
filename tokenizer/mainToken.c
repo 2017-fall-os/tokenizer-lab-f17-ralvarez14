@@ -9,7 +9,7 @@ int main(int argc, char **argv){
     while(!out){
         write(1,"Please enter string:\n",21);
         write(1,"$ ",2);
-        read(0,str,sizeof str);
+        int buff = read(0,str,sizeof str);
         out = cmpExt(str);
         if(out == 0){
             char ** tokenVec = myTock(str);
@@ -20,6 +20,8 @@ int main(int argc, char **argv){
             //free(tokenVec);
             //write(1,"Memory has been freed\n",21);
         }
+        for(int i = 0; i < buff; i ++)
+            str[i] = '\0';
     }
     write(1,"End Of loop",14);
     write(1,"\n",1);

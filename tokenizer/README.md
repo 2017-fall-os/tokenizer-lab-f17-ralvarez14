@@ -10,3 +10,5 @@ and I was not able to figure out how to avoid the segmantatioin fault error on t
 *UPDATE*
 
 all bugs where succesfully resolve, exccept, when we have this example of string: "Hello_World_ _" in which _ are spacces then the last blank space would get recognized as another word.
+
+*UPDATE 2* All bugs resolved as of 11/03/2017 barley ulpoding the corrections. on 11/17/2017

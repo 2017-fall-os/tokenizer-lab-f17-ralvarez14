@@ -35,7 +35,7 @@ int getNumWords(char str []){ // Return the number of tokens
     int i = 0;                // Checks the delimiter
     
     while(str[i] != '\0'){
-        if(str[i] != ' ' && flag == 1){
+        if(str[i] != ' ' && flag == 1 && str[i] != 10){
             size++;
         }
         if(str[i] == ' ' && str[i-1] == ' ')
